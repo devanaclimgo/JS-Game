@@ -5,10 +5,15 @@ function exibirTextoNaTela() {
   campo.innerHTML = texto
 }
 
-exibirTextoNaTela('h1', 'Jogo do número secreto')
-exibirTextoNaTela('p', 'Escolha um número entre 1 e 10')
+function exibirMensagemInicial() {
+  exibirTextoNaTela('h1', 'Jogo do número secreto')
+  exibirTextoNaTela('p', 'Escolha um número entre 1 e 10')
+}
+
+exibirMensagemInicial()
 
 const verificarChute = document.querySelector('.botao-chute')
+const reiniciarJogo = document.querySelector('.reiniciar')
 
 verificarChute.addEventListener('click', function() {
   let chute = document.querySelector('input').value
@@ -37,3 +42,11 @@ function limparCampo() {
   chute = document.querySelector('input')
   chute.value = ''
 }
+
+reiniciarJogo.addEventListener('click', function() {
+  numeroSecreto = gerarNumeroAleatorio()
+  limparCampo()
+  tentativas = 1
+  exibirMensagemInicial()
+  document.getElementById('reiniciar').setAttribute('disabled', true)
+})
